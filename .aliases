@@ -147,3 +147,44 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+alias ll='ls -lah'
+alias phpcs=~/PhpstormProjects/vendor/squizlabs/php_codesniffer/scripts/phpcs
+
+alias precommit_check="$HOME/stuff/precommit_check.sh"
+
+alias php4fs="sshfs php4.dev:/home/molodtsov/work-github-local/ /Volumes/work-lib2/"
+
+alias phpYa="mkdir /Volumes/molodtsov && sshfs ya:/home/molodtsov/ /Volumes/molodtsov"
+
+alias phpcs_auto="phpcs -d memory_limit=1024M --standard=$HOME/work/.hooks/codesnifferRules/AUTORU/ruleset.xml -sp"
+
+alias cs='composer'
+
+alias tar_this='tar -cvzf'
+
+alias 'psgrep'='ps ax | grep -v grep | grep --color'
+
+# https://github.com/nvbn/thefuck
+alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
+# You can use whatever you want as an alias, like for Mondays:
+alias FUCK='fuck'
+alias gti='git'
+alias gobuild_linux='env GOOS=linux GOARCH=amd64 go build'
+
+alias sync_php5_watchdog='watch -n5 rsync -avz --stats --delete --exclude-from=/Users/molodtsov/.rsync.exclude.php5.txt /Users/molodtsov/PhpstormProjects/prod/ molodtsov@ya:/home/molodtsov/work-nout'
+alias sync_php4_watchdog='watch -n5 rsync -avz --stats --delete --exclude-from=/Users/molodtsov/.rsync.exclude.php4.txt /Users/molodtsov/PhpstormProjects/prod/ molodtsov@yaphp4:/home/molodtsov/work-nout'
+alias weather="curl -4 http://wttr.in/"
+alias wttr="curl -4 http://wttr.in/"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+# Add an "alert" alias for long running commands.  Use like so:
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
