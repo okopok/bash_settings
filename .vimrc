@@ -1,6 +1,6 @@
 " Use the Solarized Dark theme
 set background=dark
-colorscheme wombat256mod
+colorscheme Tomorrow-Night-Eighties
 let g:solarized_termtrans=1
 
 " Make Vim more useful
