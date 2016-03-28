@@ -29,7 +29,7 @@ alias week='date +%V'
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
-if ! type "brew" > /dev/null; then
+if ! type "brew" &> /dev/null; then
 	# Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 	alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
 fi
