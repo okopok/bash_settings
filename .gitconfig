@@ -1,80 +1,13 @@
-[alias]
-
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
-
-	# View the current working tree status using the short format
-	s = status -s
-
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
-
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
-
-	# Clone a repository including all submodules
-	c = clone --recursive
-
-	# Commit all changes
-	ca = !git add -A && git commit -av
-
-	# Switch to a branch, creating it if necessary
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
-
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
-
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
-
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
-
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
-
-	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
-
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
-
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
-
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
-
-	# Remove branches that have already been merged with master
-	# a.k.a. ‘delete merged’
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-
-	# List contributors with number of commits
-	contributors = shortlog --summary --numbered
-
-	# Merge GitHub pull request on top of the current branch or,
-	# if a branch name is specified, on top of the specified branch
-	mpr = "!f() { \
-		declare currentBranch=\"$(git symbolic-ref --short HEAD)\"; \
-		declare branch=\"${2:-$currentBranch}\"; \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git checkout -B $branch && \
-			git rebase $branch pr/$1 && \
-			git checkout -B $branch && \
-			git merge pr/$1 && \
-			git branch -D pr/$1 && \
-			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-	}; f"
+[user]
+	email = username@yandex-team.ru
+	name = username
+	editor = vim
+[github]
+	name = username
+[credential]
+	helper = cache --timeout=600
+[i18n]
+	commitEncoding = utf8
 
 [apply]
 
@@ -82,7 +15,8 @@
 	whitespace = fix
 
 [core]
-
+	pager = less -FRSX
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	# Use custom `.gitignore` and `.gitattributes`
 	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
@@ -100,59 +34,35 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
-[color]
-
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
-
-[color "branch"]
-
-	current = yellow reverse
-	local = yellow
-	remote = green
-
-[color "diff"]
-
-	meta = yellow bold
-	frag = magenta bold # line info
-	old = red # deletions
-	new = green # additions
-
-[color "status"]
-
-	added = yellow
-	changed = green
-	untracked = cyan
-
-[diff]
-
-	# Detect copies as well as renames
-	renames = copies
-
-[diff "bin"]
-	# Use `hexdump` to diff binary files
-	textconv = hexdump -v -C
-
-[help]
-
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
-
 [merge]
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = vimdiff
 
 [push]
 
 	# Use the Git 1.x.x default to avoid errors on machines with old Git
 	# installations. To use `simple` instead, add this to your `~/.extra` file:
 	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	default = simple
 	# Make `git push` push relevant annotated tags when pushing branches out.
 	followTags = true
+[rebase]
+	autosquash = true
+[pull]
+	rebase = true
+[rerere]
+	enabled = true
 
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[diff]
+	submodule = log
+[status]
+	submodulesummary = 1
 # URL shorthands
 
 [url "git@github.com:"]
@@ -174,3 +84,96 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	interactive = auto
+	ui = true
+	pager = true
+[color "branch"]
+	branch = auto
+	diff = auto
+	status = auto
+	interactive = auto
+	ui = true
+	pager = true
+[color "branch"]
+	current = green reverse
+	local = yellow
+	remote = cyan
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[alias]
+	st = status
+	up = pull
+	ci = commit
+	cist = "!git commit -am 'Commited submodules state'"
+	br = branch
+	df = diff
+	lg = log -p
+	co = checkout
+	psuh = push
+	cleanall = clean -fd
+	tree = log --graph --pretty=oneline --decorate
+	pom = push origin master
+	amend = commit --amend -C HEAD
+	hist = log --pretty=format:\"%C(bold yellow)%h%Creset|%Cblue%ai%Creset|%C(green)%an%Creset : %s%d\" --date=short --max-count=20
+	logp = log --pretty=format:\"%C(bold yellow)%h%Creset|%C(green)%an%Creset : %s\" --max-count=20
+	in = "!git remote update -p; git hist ..@{u}"
+	out = log --pretty=format:\"%h %ad %an: %s%d\" --date=short @{u}..
+	chp = cherry-pick
+	bra = branch -av
+	bro = "!git branch -av | grep --color -Ei '(AUTORUAPI)'"
+	bl = blame -b -w
+	pr = prune
+	prpr = remote prune
+	f = "!git ls-files | grep -i"
+	find = "!git logp --grep"
+	grep = grep -Ii
+	gr = grep -Ii
+
+	#Grep from root folder:
+	gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+
+	#show all aliases
+	la = "!git config -l | grep alias | cut -c 7-"
+	#set prefix for branches
+	mark-done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+	mark-merged = "!f() { git branch | grep "$1" | cut -c 3- | grep -v merged | xargs -I{} git branch -m {} merged-{}; }; f"
+
+	sl = stash list
+	sa = stash apply
+	ss = stash save
+	sp = stash pop
+
+	#Assume a file as unchanged:
+	assume = update-index --assume-unchanged
+
+	#Unassume a file:
+	unassume = update-index --no-assume-unchanged
+
+	#Show assumed files:
+	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+
+	#Unassume all the assumed files:
+	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+
+	#Assume all:
+	assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+	supdate = submodule update --remote --rebase
+	spush = push --recurse-submodules=on-demand
+	sdiff = !git diff && git submodule foreach 'git diff'
+	sreset = !git submodule foreach 'git reset --hard'
+
+	countcommits = show-branch --sha1-name --current
+	brcom = !git logp HEAD ^master
