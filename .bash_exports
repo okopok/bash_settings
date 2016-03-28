@@ -1,5 +1,7 @@
 # Make vim the default editor.
 export EDITOR='vim';
+export SVN_EDITOR=vim
+export GIT_EDITOR=vim
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
@@ -26,3 +28,11 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+export DEBFULLNAME="Sasha Molodtsov"
+export DEBEMAIL="molodtsov@yandex-team.ru"
+
+alias dch='dch --distributor=debian'
+
+export CLICOLOR=1
+export LSCOLORS=Exfxcxdxbxegedabagacad
