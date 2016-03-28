@@ -6,7 +6,18 @@ files[5]=".bash_exports"
 files[6]=".bash_aliases"
 files[7]=".bash_functions"
 files[8]=".bash_extra"
-files[9]=".bash_colours"
+files[9]=".curlrc"
+files[10]=".editorconfig"
+files[11]=".gitattributes"
+files[12]=".gitconfig"
+files[13]=".gitignore"
+files[14]=".gvimrc"
+files[15]=".inputrc"
+files[16]=".screenrc"
+files[17]=".vimrc"
+files[18]=".wgetrc"
+files[19]=".vim"
+
 
 while true; do
     echo "----------------------------------"
@@ -32,8 +43,7 @@ for file in ${files[*]}; do
     if [ -r "$PWD/$file" ] && [ -f "$PWD/$file" ]; then
         if [ -r "$toDir/$file" ];then
 
-            echo "cp $toDir/$file $backupDir/$file"
-            cp "$toDir/$file" "$backupDir/$file"
+            cp -Rv "$toDir/$file" "$backupDir/$file"
 
             echo "unlink $toDir/$file"
             unlink "$toDir/$file"
