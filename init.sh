@@ -24,12 +24,16 @@ done
 for file in ${files[*]}; do
 
     toDir="$HOME"
+    backupDir="$PWD/backup/`date +%s`"
+    if [ ! -d "$backupDir" ]; then
+        mkdir -pv $backupDir
+    fi
 
     if [ -r "$PWD/$file" ] && [ -f "$PWD/$file" ]; then
         if [ -r "$toDir/$file" ];then
 
-            echo "cp $toDir/$file $PWD/backup/$file"
-            cp "$toDir/$file" "$PWD/backup/$file"
+            echo "cp $toDir/$file $backupDir/$file"
+            cp "$toDir/$file" "$backupDir/$file"
 
             echo "unlink $toDir/$file"
             unlink "$toDir/$file"
@@ -40,5 +44,6 @@ for file in ${files[*]}; do
     fi
 
     unset toDir
+    unset backupDir
 done;
 unset files;

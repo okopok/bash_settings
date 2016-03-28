@@ -1,0 +1,4 @@
+# Add `~/bin` to the `$PATH`
+export PATH="$HOME/bin:$PATH";
+export PATH="/usr/local/sbin:$PATH"
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$HOME/scripts:$HOME/.composer/vendor/bin:$HOME/PhpstormProjects/vendor/bin:$PATH"

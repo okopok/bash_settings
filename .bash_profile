@@ -1,12 +1,8 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$(brew --prefix homebrew/php/php70)/bin:$HOME/scripts:$HOME/.composer/vendor/bin:$HOME/PhpstormProjects/vendor/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,bash_exports,bash_aliases,bash_functions,bash_extra,bash_colours}; do
+for file in ~/.{bash_path,bash_colours,bash_exports,bash_aliases,bash_prompt,bash_functions,bash_extra}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
