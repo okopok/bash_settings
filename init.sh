@@ -40,7 +40,7 @@ for file in ${files[*]}; do
         mkdir -pv $backupDir
     fi
 
-    if [ -r "$PWD/$file" ] && [ -f "$PWD/$file" ]; then
+    if [ -r "$PWD/$file" ] && [ -f "$PWD/$file" -o -d "$PWD/$file" ]; then
         if [ -r "$toDir/$file" ];then
 
             cp -Rv "$toDir/$file" "$backupDir/$file"
