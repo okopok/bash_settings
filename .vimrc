@@ -1,10 +1,83 @@
+set nocompatible
+
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+Plugin 'ascenator/L9', {'name': 'newL9'}
+
+"php
+Plugin 'stanangeloff/php.vim'
+Plugin 'sumpygump/php-documentor-vim'
+Plugin 'arnaud-lb/vim-php-namespace'
+
+"// javascript
+Plugin 'pangloss/vim-javascript'
+
+"// html
+Plugin 'othree/html5.vim'
+
+"// twig
+Plugin 'evidens/vim-twig'
+
+" css
+Plugin 'mtscout6/vim-tagbar-css'
+
+" colors
+Plugin 'damage220/solas.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'mhartington/oceanic-next'
+
+
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
 " Use the Solarized Dark theme
 set background=dark
 colorscheme Tomorrow-Night-Eighties
 let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 " Enhance command-line completion
@@ -104,3 +177,44 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+
+"// solarized не входит в стандартную поставку, необходимо загрузить набор тем
+let g:airline_theme='molokai'
+
+"// использовать пропатченные шрифты
+let g:airline_powerline_fonts = 0
+
+"// включить управление табами
+let g:airline#extensions#tabline#enabled = 1
+
+"// всегда показывать tabline
+let g:airline#extensions#tabline#tab_min_count = 0
+
+"// такое же поведение, как и в sublime: если файл с уникальным именем - показывается только имя, если встречается файл с таким же именем, отображается также и директория
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+"// скрыть буферы
+let g:airline#extensions#tabline#show_buffers = 0
+
+"// имя файла + расширение :help filename-modifiers
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+"// убираем раздражающие ненужные красные панели с предупреждениями или ошибками. Предупреждения, как по мне, не нужны, поскольку ругаются даже на trailing-spaces и разные отступы: например табы и пробелы (привет от phpDoc). Для ошибок и так открывается дополнительное окно. Впрочем, вам решать.
+let g:airline_section_warning = ''
+let g:airline_section_error = ''
+
+"// убираем X для закрытия вкладки мышью (мышью!?)
+let g:airline#extensions#tabline#show_close_button = 0
+
+"// убираем разделитель для вкладок
+let g:airline#extensions#tabline#left_alt_sep = ''
+
+"// отключаем tagbar
+let g:airline#extensions#tagbar#enabled = 0
+
+"// показывать номер вкладки
+let g:airline#extensions#tabline#show_tab_nr = 1
+
+"// показывать только номер вкладки
+let g:airline#extensions#tabline#tab_nr_type = 1
