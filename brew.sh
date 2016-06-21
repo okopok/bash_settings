@@ -82,6 +82,7 @@ brew install xz
 
 # Install other useful binaries.
 brew install ack
+brew install fzf
 brew install the_silver_searcher
 brew install dark-mode
 #brew install exiv2
