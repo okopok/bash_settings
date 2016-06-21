@@ -23,6 +23,10 @@ for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null;
 done;
 
+if [ -f $HOME/git-completion.bash ]; then
+	source $HOME/git-completion.bash;
+fi;
+
 # Add tab completion for many Bash commands
 if ! type "brew" &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
 	source "$(brew --prefix)/share/bash-completion/bash_completion";

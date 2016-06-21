@@ -152,8 +152,11 @@ alias FUCK='fuck'
 alias gti='git'
 alias gobuild_linux='env GOOS=linux GOARCH=amd64 go build'
 
-alias sync_php5_watchdog='watch -n5 rsync -avz --stats --delete --exclude-from=/Users/molodtsov/.rsync.exclude.php5.txt /Users/molodtsov/PhpstormProjects/prod/ molodtsov@ya:/home/molodtsov/work-nout'
-alias sync_php4_watchdog='watch -n5 rsync -avz --stats --delete --exclude-from=/Users/molodtsov/.rsync.exclude.php4.txt /Users/molodtsov/PhpstormProjects/prod/ molodtsov@yaphp4:/home/molodtsov/work-nout'
+alias sync_php5_watchdog='watch -n5 rsync -avz --stats --exclude-from=/Users/molodtsov/.rsync.exclude.php5.txt $(pwd)/ molodtsov@yaold:/home/molodtsov/work-nout'
+
+alias sync_php4_watchdog='watch -n5 rsync -avz --stats --exclude-from=/Users/molodtsov/.rsync.exclude.php4.txt $(pwd)/ molodtsov@yaphp4:/home/molodtsov/work-nout'
+
+alias sync_php7_watchdog='watch -n5 rsync -avz --stats --exclude-from=/Users/molodtsov/.rsync.exclude.php5.txt $(pwd)/ molodtsov@ya:/home/molodtsov/work-nout'
 
 alias weather="curl -4 http://wttr.in/"
 alias wttr="curl -4 http://wttr.in/"
