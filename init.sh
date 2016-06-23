@@ -56,4 +56,15 @@ for file in ${files[*]}; do
     unset toDir
     unset backupDir
 done;
+
+
+if [ ! -d "$HOME/bin" ]
+	mkdir -pv "$HOME/bin"
+fi
+
+curl -O https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
+
+# устанавливаем ссылку на правильный диф-хайлатер
+ln -s "$PWD/diff-highlight" "$HOME/bin/diff-highlight"
+
 unset files;

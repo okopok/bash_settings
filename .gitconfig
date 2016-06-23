@@ -1,6 +1,6 @@
 [user]
-	email = username@yandex-team.ru
-	name = username
+	email = molodtsov@yandex-team.ru
+	name = molodtsov
 	editor = vim
 [github]
 	name = username
@@ -61,6 +61,7 @@
 	required = true
 [diff]
 	submodule = log
+	compactionHeuristic = true
 [status]
 	submodulesummary = 1
 # URL shorthands
@@ -127,8 +128,8 @@
 	tree = log --graph --pretty=oneline --decorate
 	pom = push origin master
 	amend = commit --amend -C HEAD
-	hist = log --pretty=format:\"%C(bold yellow)%h%Creset|%Cblue%ai%Creset|%C(green)%an%Creset : %s%d\" --date=short --max-count=20
-	logp = log --pretty=format:\"%C(bold yellow)%h%Creset|%C(green)%an%Creset : %s\" --max-count=20
+	hist = log --pretty=format:\"%C(bold yellow)%h%Creset | %C(white)%ai%Creset | %C(green)%an%Creset : %s\" --date=short --max-count=20
+	logp = log --pretty=format:\"%C(bold yellow)%h%Creset | %C(green)%an%Creset : %s\" --max-count=20
 	in = "!git remote update -p; git hist ..@{u}"
 	out = log --pretty=format:\"%h %ad %an: %s%d\" --date=short @{u}..
 	chp = cherry-pick
@@ -177,3 +178,11 @@
 
 	countcommits = show-branch --sha1-name --current
 	brcom = !git logp HEAD ^master
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[interactive]
+	diffFilter = diff-highlight
+[submodule]
+	fetchJobs = 3
