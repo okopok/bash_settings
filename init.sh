@@ -58,11 +58,13 @@ for file in ${files[*]}; do
 done;
 
 
-if [ ! -d "$HOME/bin" ]
+if [ ! -d "$HOME/bin" ]; then
 	mkdir -pv "$HOME/bin"
 fi
 
 curl -O https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight
+
+chmod +x "$PWD/diff-highlight"
 
 # устанавливаем ссылку на правильный диф-хайлатер
 ln -s "$PWD/diff-highlight" "$HOME/bin/diff-highlight"
