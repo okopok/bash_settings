@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Dotfiles : :wrench: .files, including ~/.osx — sensible hacker defaults for OS X">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Dotfiles</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/okopok/dotfiles">View on GitHub</a>
+
+          <h1 id="project_title">Dotfiles</h1>
+          <h2 id="project_tagline">:wrench: .files, including ~/.osx — sensible hacker defaults for OS X</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/okopok/dotfiles/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/okopok/dotfiles/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="okopoks-dotfiles" class="anchor" href="#okopoks-dotfiles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>OKOPOK’s dotfiles</h1>
+
+<p><img src="console.png" alt="Screenshot of my shell prompt"></p>
+
+<p><img src="vim.png" alt="Screenshot of my vim hightlight"></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Это форк репозитория <a href="https://github.com/mathiasbynens/dotfiles">Mathias Bynens</a></p>
+
+<p><strong>Warning:</strong> If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!</p>
+
+<h3>
+<a id="using-git-and-the-bootstrap-script" class="anchor" href="#using-git-and-the-bootstrap-script" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using Git and the bootstrap script</h3>
+
+<p>You can clone the repository wherever you want. (I like to keep it in <code>~/Projects/dotfiles</code>, with <code>~/dotfiles</code> as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.</p>
+
+<div class="highlight highlight-source-shell"><pre>git clone --recursive https://github.com/okopok/dotfiles.git <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">cd</span> dotfiles <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">source</span> init.sh</pre></div>
+
+<p>To update, <code>cd</code> into your local <code>dotfiles</code> repository and then:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c1">source</span> init.sh</pre></div>
+
+<h3>
+<a id="git-free-install" class="anchor" href="#git-free-install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Git-free install</h3>
+
+<p>To install these dotfiles without Git:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c1">cd</span><span class="pl-k">;</span> curl -#L https://github.com/okopok/dotfiles/tarball/master <span class="pl-k">|</span> tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,LICENSE-MIT.txt}</pre></div>
+
+<p>To update later on, just run that command again.</p>
+
+<h3>
+<a id="specify-the-path" class="anchor" href="#specify-the-path" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Specify the <code>$PATH</code>
+</h3>
+
+<p>Here’s an example <code>~/.bash_path</code> file that adds <code>/usr/local/bin</code> to the <code>$PATH</code>:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-k">export</span> PATH=<span class="pl-s"><span class="pl-pds">"</span>/usr/local/bin:<span class="pl-smi">$PATH</span><span class="pl-pds">"</span></span></pre></div>
+
+<h3>
+<a id="add-custom-commands-without-creating-a-new-fork" class="anchor" href="#add-custom-commands-without-creating-a-new-fork" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add custom commands without creating a new fork</h3>
+
+<p>If <code>~/.bash_extra</code> exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.</p>
+
+<p>My <code>~/.bash_extra</code> looks something like this:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Git credentials</span>
+<span class="pl-c"># Not in the repository, to prevent people from accidentally committing under my name</span>
+GIT_AUTHOR_NAME=<span class="pl-s"><span class="pl-pds">"</span>Sasha Molodtsov<span class="pl-pds">"</span></span>
+GIT_COMMITTER_NAME=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$GIT_AUTHOR_NAME</span><span class="pl-pds">"</span></span>
+git config --global user.name <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$GIT_AUTHOR_NAME</span><span class="pl-pds">"</span></span>
+GIT_AUTHOR_EMAIL=<span class="pl-s"><span class="pl-pds">"</span>molodtsov.sasha@gmail.com<span class="pl-pds">"</span></span>
+GIT_COMMITTER_EMAIL=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$GIT_AUTHOR_EMAIL</span><span class="pl-pds">"</span></span>
+git config --global user.email <span class="pl-s"><span class="pl-pds">"</span><span class="pl-smi">$GIT_AUTHOR_EMAIL</span><span class="pl-pds">"</span></span></pre></div>
+
+<p>You could also use <code>~/.bash_extra</code> to override settings, functions and aliases from my dotfiles repository. It’s probably better to <a href="https://github.com/mathiasbynens/dotfiles/fork">fork this repository</a> instead, though.</p>
+
+<h3>
+<a id="install-homebrew-formulae" class="anchor" href="#install-homebrew-formulae" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install Homebrew formulae</h3>
+
+<p>When setting up a new Mac, you may want to install some common <a href="http://brew.sh/">Homebrew</a> formulae (after installing Homebrew, of course):</p>
+
+<div class="highlight highlight-source-shell"><pre>./brew.sh</pre></div>
+
+<h2>
+<a id="feedback" class="anchor" href="#feedback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Feedback</h2>
+
+<p>Suggestions/improvements
+<a href="https://github.com/okopok/dotfiles/issues">welcome</a>!</p>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Author</h2>
+
+<p><a href="https://fb.com/okopok">Саша Молодцов</a></p>
+
+<h2>
+<a id="thanks-to" class="anchor" href="#thanks-to" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Thanks to</h2>
+
+<table>
+<thead>
+<tr>
+<th><a href="http://twitter.com/mathias" title="Follow @mathias on Twitter"><img src="http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70" alt="twitter/mathias"></a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://mathiasbynens.be/">Mathias Bynens</a></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>
+<a href="https://github.com/ptb" class="user-mention">@ptb</a> and <a href="https://github.com/ptb/Mac-OS-X-Lion-Setup">his <em>OS X Lion Setup</em> repository</a>
+</li>
+<li>
+<a href="http://benalman.com/">Ben Alman</a> and his <a href="https://github.com/cowboy/dotfiles">dotfiles repository</a>
+</li>
+<li>
+<a href="http://www.randomsquared.com/">Chris Gerke</a> and his <a href="http://chris-gerke.blogspot.com/2012/04/mac-osx-soe-master-image-day-7.html">tutorial on creating an OS X SOE master image</a> + <a href="https://github.com/cgerke/Insta"><em>Insta</em> repository</a>
+</li>
+<li>
+<a href="https://github.com/alrra">Cătălin Mariș</a> and his <a href="https://github.com/alrra/dotfiles">dotfiles repository</a>
+</li>
+<li>
+<a href="http://gf3.ca/">Gianni Chiappetta</a> for sharing his <a href="https://github.com/gf3/dotfiles">amazing collection of dotfiles</a>
+</li>
+<li>
+<a href="http://jan.moesen.nu/">Jan Moesen</a> and his <a href="https://gist.github.com/1156154">ancient <code>.bash_profile</code></a> + <a href="https://github.com/janmoesen/tilde">shiny <em>tilde</em> repository</a>
+</li>
+<li>
+<a href="http://lri.me/">Lauri ‘Lri’ Ranta</a> for sharing <a href="http://osxnotes.net/defaults.html">loads of hidden preferences</a>
+</li>
+<li>
+<a href="http://hotfusion.nl/">Matijs Brinkhuis</a> and his <a href="https://github.com/matijs/dotfiles">dotfiles repository</a>
+</li>
+<li>
+<a href="http://nicolasgallagher.com/">Nicolas Gallagher</a> and his <a href="https://github.com/necolas/dotfiles">dotfiles repository</a>
+</li>
+<li><a href="http://sindresorhus.com/">Sindre Sorhus</a></li>
+<li>
+<a href="http://blog.sanctum.geek.nz/">Tom Ryder</a> and his <a href="https://github.com/tejr/dotfiles">dotfiles repository</a>
+</li>
+<li>
+<a href="http://kevinsuttle.com/">Kevin Suttle</a> and his <a href="https://github.com/kevinSuttle/dotfiles">dotfiles repository</a> and <a href="https://github.com/kevinSuttle/OSXDefaults">OSXDefaults project</a>, which aims to provide better documentation for <a href="https://mths.be/osx"><code>~/.osx</code></a>
+</li>
+<li><a href="http://hkdobrev.com/">Haralan Dobrev</a></li>
+<li>anyone who <a href="https://github.com/mathiasbynens/dotfiles/contributors">contributed a patch</a> or <a href="https://github.com/mathiasbynens/dotfiles/issues">made a helpful suggestion</a>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Dotfiles maintained by <a href="https://github.com/okopok">okopok</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
