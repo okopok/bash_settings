@@ -7,6 +7,8 @@ for file in ~/.{bash_path,bash_colours,bash_exports,bash_aliases,bash_prompt,bas
 done;
 unset file;
 
+ssh-add $HOME/.ssh/id_rsa
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 

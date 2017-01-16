@@ -111,16 +111,9 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
 	alias "$method"="lwp-request -m '$method'"
 done
 
-# Make Grunt print stack traces by default
-command -v grunt > /dev/null && alias grunt="grunt --stack"
-
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
-
-# Kill all the tabs in Chrome to free up memory
-# [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
-alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -128,38 +121,18 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
 
-
 alias phpcs=~/PhpstormProjects/vendor/squizlabs/php_codesniffer/scripts/phpcs
 
 alias precommit_check="$HOME/stuff/precommit_check.sh"
 
-alias php4fs="sshfs php4.dev:/home/molodtsov/work-github-local/ /Volumes/work-lib2/"
-
-alias phpYa="mkdir /Volumes/molodtsov && sshfs ya:/home/molodtsov/ /Volumes/molodtsov"
-
-alias phpcs_auto="phpcs -d memory_limit=1024M --standard=$HOME/work/.hooks/codesnifferRules/AUTORU/ruleset.xml -sp"
+alias phpcs_auto="phpcs -d memory_limit=1024M --standard=$HOME/PhpstormProjects/coding-style/ruleset.xml -sp"
 
 alias cs='composer'
 
 alias tar_this='tar -cvzf'
 
-
-
-# https://github.com/nvbn/thefuck
-alias fuck='eval $(thefuck $(fc -ln -1)); history -r'
-# You can use whatever you want as an alias, like for Mondays:
-alias FUCK='fuck'
 alias gti='git'
 alias gobuild_linux='env GOOS=linux GOARCH=amd64 go build'
-
-alias sync_php5_watchdog='watch -n5 rsync -avz --stats --exclude-from=/Users/molodtsov/.rsync.exclude.php5.txt $(pwd)/ molodtsov@yaold:/home/molodtsov/work-nout'
-
-alias sync_php4_watchdog='watch -n5 rsync -avz --stats --exclude-from=/Users/molodtsov/.rsync.exclude.php4.txt $(pwd)/ molodtsov@yaphp4:/home/molodtsov/work-nout'
-
-alias sync_php7_watchdog='watch -n5 rsync -avz --stats --exclude-from=/Users/molodtsov/.rsync.exclude.php5.txt $(pwd)/ molodtsov@ya:/home/molodtsov/work-nout'
-
-alias weather="curl -4 http://wttr.in/"
-alias wttr="curl -4 http://wttr.in/"
 
 # some more ls aliases
 alias ll='ls -lah'
@@ -168,6 +141,9 @@ alias l='ls -CF'
 #alias dir='dir --color=auto'
 #alias vdir='vdir --color=auto'
 
+curltime() {
+	curl -w "\n             time_namelookup:  %{time_namelookup}\n                time_connect:  %{time_connect}\n             time_appconnect:  %{time_appconnect}\n            time_pretransfer:  %{time_pretransfer}\n               time_redirect:  %{time_redirect}\n          time_starttransfer:  %{time_starttransfer}\n                             ----------\n                  time_total:  %{time_total}\n \n" -o /dev/null -s "$*";
+}
 
-# Add an "alert" alias for long running commands.  Use like so:
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias tor.big="sftp molo@wzrist.iseedfast.com"
+alias tor.small="sftp molod@5.79.105.17"
