@@ -60,6 +60,56 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 
 You could also use `~/.bash_extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/mathiasbynens/dotfiles/fork) instead, though.
 
+### Vim 
+
+if you get some vim\vi erorrs, on startup, try to update vim like theese
+
+```
+vi .vimrc
+Error detected while processing /home/durrantm/.vimrc:
+line   20:
+E319: Sorry, the command is not available in this version: autocmd BufWritePre *.rb :%s/\s\+$//e
+line   24:
+E519: Option not supported: filetype 
+line   25:
+E319: Sorry, the command is not available in this version: filetype plugin on
+line   26:
+E319: Sorry, the command is not available in this version: filetype indent on
+line   27:
+E319: Sorry, the command is not available in this version: syntax on " Turn on syntax highlighting
+line   37:
+E319: Sorry, the command is not available in this version: match ExtraWhitespace /\s\+$/
+line   38:
+E319: Sorry, the command is not available in this version: autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+line   39:
+E319: Sorry, the command is not available in this version: autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@
+<!$/
+line   40:
+E319: Sorry, the command is not available in this version: autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+line   41:
+E319: Sorry, the command is not available in this version: autocmd BufWinLeave * call clearmatches()
+line   48:
+E319: Sorry, the command is not available in this version: let mapleader = ","
+line   52:
+E518: Unknown option: foldmethod=indent
+line   53:
+E518: Unknown option: foldnestmax=10
+line   54:
+E518: Unknown option: nofoldenable
+line   55:
+E518: Unknown option: foldlevel=1
+line   57:
+E319: Sorry, the command is not available in this version: let loaded_matchparen = 1 " MDD Turn off matching brac
+ket highlighting.
+line   58:
+E319: Sorry, the command is not available in this version: filetype plugin indent on
+```
+
+```
+apt-get install vim
+```
+and then in vim window type `:BundleInstall`
+
 ### Install Homebrew formulae
 
 When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
