@@ -30,10 +30,14 @@ if [ -f $HOME/git-completion.bash ]; then
 fi;
 
 # Add tab completion for many Bash commands
-if ! type "brew" &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-	source "$(brew --prefix)/share/bash-completion/bash_completion";
-elif [ -f /etc/bash_completion ]; then
+
+if [[ $(uname) -eq "Darwin" ]]; then
+		echo 'hello mac user';
+fi
+
+if [ -f /etc/bash_completion ]; then
 	source /etc/bash_completion;
+	echo 'Hello Linux User'
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
