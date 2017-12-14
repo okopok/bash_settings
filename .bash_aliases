@@ -8,6 +8,8 @@ alias -- -="cd -"
 
 # Shortcuts
 alias dl="cd ~/Downloads"
+alias mov="cd ~/Movies/Video/Movies"
+alias ser="cd ~/Movies/Video/Series"
 alias dt="cd ~/Desktop"
 alias g="git"
 alias h="history"
@@ -145,5 +147,8 @@ curltime() {
 	curl -w "\n             time_namelookup:  %{time_namelookup}\n                time_connect:  %{time_connect}\n             time_appconnect:  %{time_appconnect}\n            time_pretransfer:  %{time_pretransfer}\n               time_redirect:  %{time_redirect}\n          time_starttransfer:  %{time_starttransfer}\n                             ----------\n                  time_total:  %{time_total}\n \n" -o /dev/null -s "$*";
 }
 
-alias tor.big="sftp molo@wzrist.iseedfast.com"
-alias tor.small="sftp molod@5.79.105.17"
+alias tor.big.sftp="sftp molo@wzrist.iseedfast.com"
+alias tor.big.mount='echo "iqt6GeU57" | sshfs -o idmap=user  molo@wzrist.iseedfast.com:/downloads/manual ~/Desktop/sftp/ -oreconnect,defer_permissions,noappledouble,volname=wzrist,password_stdin,compression=no'
+alias tor.big.umount="umount ~/Desktop/sftp"
+alias myrsync.fast.remove='rsync -rvhP --remove-source-files --delete-after --stats '
+alias myrsync.full='rsync -rvhP --stats '

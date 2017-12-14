@@ -36,3 +36,6 @@ alias dch='dch --distributor=debian'
 
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export ZSH_CUSTOM=${HOME}/dotfiles/packs/zsh-customs

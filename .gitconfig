@@ -1,9 +1,9 @@
 [user]
-	email = user@name.com
-	name = user
-	editor = vim
+	email = molodtsov@yandex-team.ru
+	name = molodtsov
+	editor = vi
 [github]
-	name = username
+	name = molodtsov
 [credential]
 	helper = cache --timeout=600
 [i18n]
@@ -33,6 +33,7 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
+	editor = /usr/bin/vim
 
 [merge]
 
@@ -129,7 +130,8 @@
 	pom = push origin master
 	amend = commit --amend -C HEAD
 	hist = log --pretty=format:\"%C(bold yellow)%h%Creset | %C(white)%ai%Creset | %C(green)%an%Creset : %s\" --date=short --max-count=20
-	logp = log --pretty=format:\"%C(bold yellow)%h%Creset | %C(green)%an%Creset : %s\" --max-count=20
+	logp = log --pretty=format:\"%C(bold yellow)%h%Creset | %C(white)%ai%Creset | %C(green)%an%Creset : %s\" --date=short --max-count=20
+	logg = log --pretty=format:\"%C(bold yellow)%h%Creset | %s (%C(green)%an%Creset)\" --max-count=20
 	in = "!git remote update -p; git hist ..@{u}"
 	out = log --pretty=format:\"%h %ad %an: %s%d\" --date=short @{u}..
 	chp = cherry-pick
@@ -179,10 +181,10 @@
 	countcommits = show-branch --sha1-name --current
 	brcom = !git logp HEAD ^master
 [pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+	#log = diff-highlight | less
+	#show = diff-highlight | less
+	#diff = diff-highlight | less
 [interactive]
-	diffFilter = diff-highlight
+	#diffFilter = diff-highlight
 [submodule]
 	fetchJobs = 3

@@ -2,9 +2,11 @@
 export PATH="$HOME/bin:$PATH";
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/scripts:$HOME/.composer/vendor/bin:$HOME/PhpstormProjects/vendor/bin:$PATH"
+export PATH="$PATH:$JAVA_HOME:$JAVA_HOME/bin"
+export PATH=$PATH:/opt/gradle/gradle-3.4.1/bin
 
-if [ "$(uname)" == "Darwin" ]; then
-    if ! type "brew" &> /dev/null; then
-        export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
-    fi
-fi
+#if [ "$(uname)" == "Darwin" ]; then
+#    if ! type "brew" &> /dev/null; then
+#        export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+#    fi
+#fi
